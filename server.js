@@ -29,7 +29,7 @@ app.use(cors())
 
 
 
-app.get('/', (req, res) => { res.send(database.users) });
+app.get('/', (req, res) => { res.send('it is working') });
 app.post('/signin', signin.handleSignin(db, bcrypt));
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
 app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db) })
@@ -37,6 +37,6 @@ app.put('/image', (req, res) => { image.handleImage(req, res, db) });
 app.post('/imageUrl', (req, res) => { image.handleApiCall(req, res) })
 
 
-app.listen(3002, () => {
-    console.log('app is running on port 3002')
+app.listen(process.env.PORT || 3002, () => {
+    console.log(`app is running on port ${process.env.PORT}`)
 })
